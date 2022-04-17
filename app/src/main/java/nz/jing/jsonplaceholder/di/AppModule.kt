@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import nz.jing.jsonplaceholder.data.remote.ApiServer
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
@@ -14,7 +15,7 @@ class AppModule {
     @Singleton
     @Provides
     fun provideRetrofit(moshi: MoshiConverterFactory): Retrofit {
-        return Retrofit.Builder().baseUrl("https://g.cn")
+        return Retrofit.Builder().baseUrl(ApiServer.BASE_URL)
             .addConverterFactory(moshi)
             .build()
     }
