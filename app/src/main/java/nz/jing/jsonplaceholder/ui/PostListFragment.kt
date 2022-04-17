@@ -9,9 +9,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import nz.jing.jsonplaceholder.R
+import nz.jing.jsonplaceholder.databinding.PostListFragmentBinding
 
 @AndroidEntryPoint
 class PostListFragment : Fragment() {
+    private var _binding : PostListFragmentBinding? = null
+    private val binding get() = _binding!!
 
     companion object {
         fun newInstance() = PostListFragment()
@@ -23,6 +26,7 @@ class PostListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.post_list_fragment, container, false)
+        _binding = PostListFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 }
