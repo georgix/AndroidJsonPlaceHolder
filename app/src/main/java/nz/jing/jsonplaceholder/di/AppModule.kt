@@ -1,9 +1,12 @@
 package nz.jing.jsonplaceholder.di
 
+import android.app.Application
+import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import nz.jing.jsonplaceholder.data.local.AppDatabase
 import nz.jing.jsonplaceholder.data.remote.ApiServer
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -24,5 +27,12 @@ class AppModule {
     @Provides
     fun provideMoshi(): MoshiConverterFactory {
         return MoshiConverterFactory.create()
+    }
+
+    @Singleton
+    @Provides
+    fun provideDatabase(application: Application): AppDatabase {
+        return Room.databaseBuilder(application, AppDatabase::class.java, AppDatabase.DB_NAME)
+            .build()
     }
 }

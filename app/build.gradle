@@ -52,6 +52,8 @@ dependencies {
     implementation 'com.squareup.moshi:moshi-kotlin:1.13.0'
     implementation 'com.squareup.okhttp3:mockwebserver:5.0.0-alpha.6'
     implementation 'androidx.test.ext:truth:1.4.0'
+    implementation 'androidx.room:room-runtime:2.4.2'
+    annotationProcessor 'androidx.room:room-compiler:2.4.2'
     kapt 'com.google.dagger:hilt-android-compiler:2.41'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
