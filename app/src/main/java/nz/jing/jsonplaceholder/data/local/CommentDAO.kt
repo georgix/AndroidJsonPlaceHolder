@@ -1,9 +1,6 @@
 package nz.jing.jsonplaceholder.data.local
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 import nz.jing.jsonplaceholder.data.entity.Comment
 
@@ -18,7 +15,7 @@ interface CommentDAO {
     @Query("SELECT * FROM comment WHERE id = :id")
     fun getById(id: Int): Flow<Comment>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(posts: List<Comment>)
 
     @Delete

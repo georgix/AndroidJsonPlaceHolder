@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/PostListFragment">
+
+    <activity
+        android:id="@+id/MainActivity"
+        android:name="nz.jing.jsonplaceholder.MainActivity"
+        android:label="main_activity"
+        tools:layout="@layout/main_activity" />
+
+    <fragment
+        android:id="@+id/PostListFragment"
+        android:name="nz.jing.jsonplaceholder.ui.PostListFragment"
+        android:label="post_list_fragment"
+        tools:layout="@layout/post_list_fragment" >
+        <action
+            android:id="@+id/action_PostListFragment_to_PostDetailFragment"
+            app:destination="@id/PostDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/PostDetailFragment"
+        android:name="nz.jing.jsonplaceholder.ui.PostDetailFragment"
+        android:label="post_detail_fragment"
+        tools:layout="@layout/post_detail_fragment" >
+        <action
+            android:id="@+id/action_PostDetailFragment_to_PostListFragment"
+            app:destination="@id/PostListFragment" />
+        <argument
+            android:name="post_id"
+            app:argType="integer" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_PostListFragment"
+        app:destination="@id/PostListFragment" />
+</navigation>
