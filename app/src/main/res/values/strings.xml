@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">JsonPlaceHolder</string>
+    <string name="connection_fail">Connection Fail</string>
 </resources>
