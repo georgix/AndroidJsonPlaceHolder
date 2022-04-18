@@ -9,8 +9,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import nz.jing.jsonplaceholder.data.local.AppDatabase
+import nz.jing.jsonplaceholder.data.local.CommentDAO
 import nz.jing.jsonplaceholder.data.local.PostDAO
 import nz.jing.jsonplaceholder.data.remote.ApiServer
+import nz.jing.jsonplaceholder.data.remote.CommentApiService
 import nz.jing.jsonplaceholder.data.remote.PostApiService
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -47,4 +49,12 @@ class AppModule {
     @Singleton
     @Provides
     fun provideLocalPostDataSource(database: AppDatabase): PostDAO = database.postDao()
+
+    @Singleton
+    @Provides
+    fun provideRemoteCommentDataSource(retrofit: Retrofit): CommentApiService = retrofit.create(CommentApiService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideLocalCommentDataSource(database: AppDatabase): CommentDAO = database.commentDao()
 }
