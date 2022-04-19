@@ -24,4 +24,14 @@ class PostRepository @Inject constructor(
     }
 
     override fun getById(postId: Int): Flow<Post> = dao.getById(postId).distinctUntilChanged()
+
+    override fun getSearch(text: String): Flow<Resource<List<Post>>> {
+        return object : NetworkBoundRepository<List<Post>, List<Post>>() {
+            override fun localDataSource(): Flow<List<Post>> = dao.search(text)
+
+            override suspend fun remoteDataSource(): Response<List<Post>> = api.getPosts()
+
+            override suspend fun persistData(data: List<Post>) = dao.insertAll(data)
+        }.asFlow()
+    }
 }

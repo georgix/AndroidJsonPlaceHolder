@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -42,6 +43,16 @@ class PostListFragment : Fragment() {
         postAdapter = PostListAdapter()
         binding.posts.adapter = postAdapter
         binding.swipeRefresh.setOnRefreshListener { getPosts() }
+        binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let { viewModel.search(newText) }
+                return true
+            }
+        })
         observePosts()
         getPosts()
     }

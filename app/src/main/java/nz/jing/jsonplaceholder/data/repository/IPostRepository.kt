@@ -7,4 +7,5 @@ import nz.jing.jsonplaceholder.model.Resource
 interface IPostRepository {
     fun getAll(): Flow<Resource<List<Post>>>
     fun getById(postId: Int): Flow<Post>
+    fun getSearch(text: String): Flow<Resource<List<Post>>>
 }

@@ -12,6 +12,9 @@ interface PostDAO {
     @Query("SELECT * FROM post WHERE ID = :postId")
     fun getById(postId: Int): Flow<Post>
 
+    @Query("SELECT * FROM post WHERE title LIKE '%' || :text || '%'")
+    fun search(text: String): Flow<List<Post>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(posts: List<Post>)
 
