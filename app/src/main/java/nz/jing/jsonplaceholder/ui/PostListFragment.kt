@@ -48,6 +48,7 @@ class PostListFragment : Fragment() {
 
     private fun getPosts() {
         viewModel.getPosts()
+        showLoading(postAdapter.currentList.isEmpty())
     }
 
     private fun showLoading(loading: Boolean) {
